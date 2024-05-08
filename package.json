@@ -1,0 +1,14 @@
+{
+	"name": "prueba-linktic",
+	"private": true,
+	"scripts": {
+		"lint": "biome check . --apply",
+		"format": "biome format --write .",
+		"lint:check": "biome check .",
+		"format:check": "biome format ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
+		"@types/node": "20.12.11"
+	}
+}
