@@ -12,4 +12,12 @@ interface Container {
 
 	// Persistence
 	dbHandler: import('@/infrastructure/persistence/postgres/db-handler').PostgresHandler
+
+	// Repositories
+	userRepository: import('@/infrastructure/persistence/postgres/user/repository').UserRepository
+
+	// Document parsers
+	userDocumentParser: ReturnType<
+		typeof import('@/infrastructure/persistence/postgres/user/document-parser').userDocumentParser
+	>
 }
