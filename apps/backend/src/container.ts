@@ -7,6 +7,8 @@ import jwt from 'jsonwebtoken'
 import { config } from './infrastructure/config'
 import { IdGenerator } from './domain/services/id-generator'
 
+import { PostgresHandler } from './infrastructure/persistence/postgres/db-handler'
+
 const container = createContainer<Container>({
 	injectionMode: InjectionMode.PROXY,
 })
@@ -22,6 +24,9 @@ container.register({
 
 	// Domain services
 	idGenerator: asClass(IdGenerator),
+
+	// Persistence
+	dbHandler: asClass(PostgresHandler).singleton(),
 })
 
 export { container }

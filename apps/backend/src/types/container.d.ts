@@ -9,4 +9,7 @@ interface Container {
 
 	// Domain services
 	idGenerator: import('@/domain/services/id-generator').IdGenerator
+
+	// Persistence
+	dbHandler: import('@/infrastructure/persistence/postgres/db-handler').PostgresHandler
 }
