@@ -3,7 +3,7 @@ import type { LoginRequest, LoginResponse } from './types'
 
 export namespace AuthService {
 	enum Routes {
-		LOGIN = '/auth/v1/login',
+		LOGIN = '/v1/auth/login',
 	}
 
 	export const login = async (request: LoginRequest) => {
