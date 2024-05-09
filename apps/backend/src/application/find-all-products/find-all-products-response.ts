@@ -1,9 +1,16 @@
-import type { Product } from '@/domain/product'
-
 export class FindAllProductsResponse {
-	public readonly products: Product[]
+	public readonly products: ProductResponse[]
 
-	constructor(products: Product[]) {
+	constructor(products: ProductResponse[]) {
 		this.products = products
 	}
+}
+
+interface ProductResponse {
+	id: string
+	name: string
+	description: string
+	price: number
+	stock: number
+	enabled: boolean
 }

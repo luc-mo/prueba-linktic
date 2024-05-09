@@ -9,6 +9,7 @@ export class FindAllProducts {
 
 	async execute(): Promise<FindAllProductsResponse> {
 		const products = await this.productRepository.findAll()
-		return new FindAllProductsResponse(products)
+		const response = products.map((product) => product.toJSON())
+		return new FindAllProductsResponse(response)
 	}
 }
