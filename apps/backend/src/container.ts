@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 
 import { config } from './infrastructure/config'
 import { IdGenerator } from './domain/services/id-generator'
+import { Cipher } from './domain/services/cipher'
 
 import { PostgresHandler } from './infrastructure/persistence/postgres/db-handler'
 import { UserRepository } from './infrastructure/persistence/postgres/user/repository'
@@ -26,6 +27,7 @@ container.register({
 
 	// Domain services
 	idGenerator: asClass(IdGenerator),
+	cipher: asClass(Cipher),
 
 	// Persistence
 	dbHandler: asClass(PostgresHandler).singleton(),

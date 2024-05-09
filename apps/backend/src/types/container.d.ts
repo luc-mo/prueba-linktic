@@ -9,6 +9,7 @@ interface Container {
 
 	// Domain services
 	idGenerator: import('@/domain/services/id-generator').IdGenerator
+	cipher: import('@/domain/services/cipher').Cipher
 
 	// Persistence
 	dbHandler: import('@/infrastructure/persistence/postgres/db-handler').PostgresHandler
