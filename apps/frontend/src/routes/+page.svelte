@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { appStore } from '@/store/app-store'
   import { ProductsService } from '@/services/products'
 
   import NavbarButtons from '@/components/navbar-buttons.svelte'
@@ -9,10 +10,13 @@
 
   const handleProducts = async() => {
     try {
+      appStore.set({ loading: true })
       const response = await ProductsService.getAllProducts()
       products = response.products
     } catch (error) {
       console.error(error)
+    } finally {
+      appStore.set({ loading: false })
     }
   }
 

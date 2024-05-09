@@ -2,6 +2,8 @@
   import { goto } from '$app/navigation'
   import { HttpClient } from '@/services/http-client'
   import { AuthService } from '@/services/auth'
+
+  import { appStore } from '@/store/app-store'
   import { userStore } from '@/store/user-store'
 
   let credentials = {
@@ -21,12 +23,15 @@
   const handleSubmit = async(event: SubmitEvent) => {
     try {
       event.preventDefault()
+      appStore.set({ loading: true })
       const { username, role, token } = await AuthService.login(credentials)
       HttpClient.setAuthToken(token)
       userStore.set({ username, role })
       goto('/')
     } catch (error) {
       console.error(error)
+    } finally {
+      appStore.set({ loading: false })
     }
   }
 </script>
