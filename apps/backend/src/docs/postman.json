@@ -11,20 +11,20 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://prueba-linktic.onrender.com/api/v1/auth/register",
 					"protocol": "https",
-					"host": [
-						"prueba-linktic",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"register"
-					]
+					"host": ["prueba-linktic", "onrender", "com"],
+					"path": ["api", "v1", "auth", "register"]
 				}
 			},
 			"response": [
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"passowrd\": \"123456\",\r\n    \"role\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,17 +52,8 @@
 						"url": {
 							"raw": "https://prueba-linktic.onrender.com/api/v1/auth/register",
 							"protocol": "https",
-							"host": [
-								"prueba-linktic",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"register"
-							]
+							"host": ["prueba-linktic", "onrender", "com"],
+							"path": ["api", "v1", "auth", "register"]
 						}
 					},
 					"_postman_previewlanguage": "json",
@@ -88,17 +79,8 @@
 				"url": {
 					"raw": "https://prueba-linktic.onrender.com/api/v1/auth/login",
 					"protocol": "https",
-					"host": [
-						"prueba-linktic",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"login"
-					]
+					"host": ["prueba-linktic", "onrender", "com"],
+					"path": ["api", "v1", "auth", "login"]
 				}
 			},
 			"response": [
@@ -126,17 +108,8 @@
 						"url": {
 							"raw": "https://prueba-linktic.onrender.com/api/v1/auth/login",
 							"protocol": "https",
-							"host": [
-								"prueba-linktic",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"login"
-							]
+							"host": ["prueba-linktic", "onrender", "com"],
+							"path": ["api", "v1", "auth", "login"]
 						}
 					},
 					"_postman_previewlanguage": "json",
@@ -162,16 +135,8 @@
 				"url": {
 					"raw": "https://prueba-linktic.onrender.com/api/v1/products",
 					"protocol": "https",
-					"host": [
-						"prueba-linktic",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"products"
-					]
+					"host": ["prueba-linktic", "onrender", "com"],
+					"path": ["api", "v1", "products"]
 				}
 			},
 			"response": [
@@ -183,16 +148,8 @@
 						"url": {
 							"raw": "https://prueba-linktic.onrender.com/api/v1/products",
 							"protocol": "https",
-							"host": [
-								"prueba-linktic",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"products"
-							]
+							"host": ["prueba-linktic", "onrender", "com"],
+							"path": ["api", "v1", "products"]
 						}
 					},
 					"_postman_previewlanguage": "json",
@@ -218,17 +175,8 @@
 				"url": {
 					"raw": "https://prueba-linktic.onrender.com/api/v1/products/:id",
 					"protocol": "https",
-					"host": [
-						"prueba-linktic",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"products",
-						":id"
-					],
+					"host": ["prueba-linktic", "onrender", "com"],
+					"path": ["api", "v1", "products", ":id"],
 					"variable": [
 						{
 							"key": "id",
@@ -262,17 +210,8 @@
 						"url": {
 							"raw": "https://prueba-linktic.onrender.com/api/v1/products/:id",
 							"protocol": "https",
-							"host": [
-								"prueba-linktic",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"products",
-								":id"
-							],
+							"host": ["prueba-linktic", "onrender", "com"],
+							"path": ["api", "v1", "products", ":id"],
 							"variable": [
 								{
 									"key": "id",
@@ -296,17 +235,8 @@
 				"url": {
 					"raw": "https://prueba-linktic.onrender.com/api/v1/orders/:id",
 					"protocol": "https",
-					"host": [
-						"prueba-linktic",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"orders",
-						":id"
-					],
+					"host": ["prueba-linktic", "onrender", "com"],
+					"path": ["api", "v1", "orders", ":id"],
 					"variable": [
 						{
 							"key": "id",
@@ -340,17 +270,8 @@
 						"url": {
 							"raw": "https://prueba-linktic.onrender.com/api/v1/orders/:id",
 							"protocol": "https",
-							"host": [
-								"prueba-linktic",
-								"onrender",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"orders",
-								":id"
-							],
+							"host": ["prueba-linktic", "onrender", "com"],
+							"path": ["api", "v1", "orders", ":id"],
 							"variable": [
 								{
 									"key": "id",
