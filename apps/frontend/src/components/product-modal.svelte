@@ -61,7 +61,7 @@
         <Textfield name="stock" placeholder="100" type="number" min="1" step="1" required />
       </section>
       <section class="flex items-center justify-end gap-4 px-8 pb-6">
-        <Button variant="outlined" on:click={onCancel}>
+        <Button variant="outlined" onClick={onCancel}>
           Cancel
         </Button>
         <Button type="submit">
