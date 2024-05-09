@@ -39,4 +39,5 @@ interface Container {
 	loginUser: import('@/application/login-user').LoginUser
 	findAllProducts: import('@/application/find-all-products').FindAllProducts
 	saveProduct: import('@/application/save-product').SaveProduct
+	saveOrder: import('@/application/save-order').SaveOrder
 }

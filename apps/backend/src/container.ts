@@ -23,6 +23,7 @@ import { RegisterUser } from './application/register-user'
 import { LoginUser } from './application/login-user'
 import { FindAllProducts } from './application/find-all-products'
 import { SaveProduct } from './application/save-product'
+import { SaveOrder } from './application/save-order'
 
 const container = createContainer<Container>({
 	injectionMode: InjectionMode.PROXY,
@@ -61,6 +62,7 @@ container.register({
 	loginUser: asClass(LoginUser),
 	findAllProducts: asClass(FindAllProducts),
 	saveProduct: asClass(SaveProduct),
+	saveOrder: asClass(SaveOrder),
 })
 
 export { container }
