@@ -73,7 +73,7 @@
       handleAddNewProduct={handleAddNewProduct}
     />
   </header>
-  <main class="grid grid-cols-[repeat(auto-fill,20rem)] gap-6">
+  <main class="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] gap-6">
     {#each products as product}
       <Product
         id={product.id}
