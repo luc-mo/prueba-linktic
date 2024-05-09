@@ -13,3 +13,15 @@ interface ProductEntity {
 	stock: number
 	enabled: boolean
 }
+
+interface OrderEntity {
+	id: string
+	userId?: string
+	products: OrderProduct[]
+	shipped: boolean
+}
+
+interface OrderProduct {
+	id: string
+	quantity: number
+}
