@@ -30,11 +30,11 @@ export const HttpClient = {
 	instance: _instance,
 	setAuthToken: (token: string) => {
 		localStorage.setItem('auth-token', token)
-		_instance.defaults.headers['auth-token'] = `Bearer ${token}`
+		_instance.defaults.headers.Authorization = `Bearer ${token}`
 	},
 	removeAuthToken: () => {
 		localStorage.removeItem('auth-token')
-		_instance.defaults.headers['auth-token'] = null
+		_instance.defaults.headers.Authorization = null
 	},
 	post: async <T>({ url, body, options }: Post) => {
 		const { data } = await _instance.post<T>(url, body, options).catch(_handleError)
