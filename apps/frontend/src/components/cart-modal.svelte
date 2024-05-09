@@ -11,6 +11,7 @@
   let dialogRef: HTMLDialogElement | null = null
   let order = get(orderStore)
   let orderProducts: ReturnType<typeof parseProductOrder> = []
+  let total = 0
 
   export let open: Writable<boolean>
   export let products: ProductEntity[]
@@ -36,6 +37,7 @@
     orderStore.subscribe((value) => {
       order = value
       orderProducts = parseProductOrder(order.products, products)
+      total = orderProducts.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
     })
   })
 </script>
@@ -63,13 +65,18 @@
           {/if}
         {/each}
       </section>
-      <section class="flex items-center justify-end gap-4 px-8 pb-6">
-        <Button variant="outlined" onClick={onCancel}>
-          Close
-        </Button>
-        <Button type="submit">
-          Create Order
-        </Button>
+      <section class="flex items-center justify-between px-8 pb-6">
+        <span>
+          Total: ${total}
+        </span>
+        <div class="flex gap-2">
+          <Button variant="outlined" onClick={onCancel}>
+            Close
+          </Button>
+          <Button type="submit">
+            Create Order
+          </Button>
+        </div>
       </section>
     </form>
   </div>
