@@ -1,0 +1,38 @@
+-- SQL CREATION QUERIES
+CREATE TABLE users (
+	id UUID PRIMARY KEY NOT NULL,
+	username VARCHAR(50) NOT NULL,
+	role VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE auth (
+	id UUID PRIMARY KEY NOT NULL,
+	user_id UUID NOT NULL REFERENCES users(id),
+	password VARCHAR(100) NOT NULL,
+	salt VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE products (
+	id UUID PRIMARY KEY NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	description VARCHAR(50) NOT NULL,
+	price INTEGER NOT NULL,
+	stock INTEGER NOT NULL,
+	enabled BOOLEAN NOT NULL
+);
+
+CREATE TABLE orders (
+	id UUID PRIMARY KEY NOT NULL,
+	shipped BOOLEAN NOT NULL
+);
+
+CREATE TABLE order_product (
+	order_id UUID NOT NULL REFERENCES orders(id),
+	product_id UUID NOT NULL REFERENCES products(id),
+	quantity INTEGER NOT NULL
+);
+
+CREATE TABLE order_user (
+	order_id UUID NOT NULL REFERENCES orders(id),
+	user_id UUID NOT NULL REFERENCES users(id)
+);

@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "3a4e6b54-697a-41d0-9f24-feceec6cb828",
+		"name": "prueba-linktic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19075906"
+	},
+	"item": [
+		{
+			"name": "register-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://prueba-linktic.onrender.com/api/v1/auth/register",
+					"protocol": "https",
+					"host": [
+						"prueba-linktic",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register-user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"passowrd\": \"123456\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://prueba-linktic.onrender.com/api/v1/auth/register",
+							"protocol": "https",
+							"host": [
+								"prueba-linktic",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"User created\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "login-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://prueba-linktic.onrender.com/api/v1/auth/login",
+					"protocol": "https",
+					"host": [
+						"prueba-linktic",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login-user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://prueba-linktic.onrender.com/api/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"prueba-linktic",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"admin\",\n    \"role\": \"admin\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc2MDY3NzY1LWU1ZmMtNGJlOC05ZmM1LTkxODk4ZWUzMzZlNCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNTI5MzA3MywiZXhwIjoxNzE3ODg1MDczfQ.hcNQNN0SEn8i1k5uCsw8rIqajJHeadIoDbZWVaTSkis\"\n}"
+				}
+			]
+		},
+		{
+			"name": "find-all-products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://prueba-linktic.onrender.com/api/v1/products",
+					"protocol": "https",
+					"host": [
+						"prueba-linktic",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "find-all-products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://prueba-linktic.onrender.com/api/v1/products",
+							"protocol": "https",
+							"host": [
+								"prueba-linktic",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"products\": [\n        {\n            \"id\": \"5f9764e3-916f-4a61-9529-d0da2366967a\",\n            \"name\": \"Producto 1\",\n            \"description\": \"Descripción 1\",\n            \"price\": 99,\n            \"stock\": 10,\n            \"enabled\": true\n        },\n        {\n            \"id\": \"229b2c54-505e-4327-9fbb-63c4b2e51c3c\",\n            \"name\": \"Producto 2\",\n            \"description\": \"Descripcion 2\",\n            \"price\": 99,\n            \"stock\": 10,\n            \"enabled\": true\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "save-product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://prueba-linktic.onrender.com/api/v1/products/:id",
+					"protocol": "https",
+					"host": [
+						"prueba-linktic",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "save-product",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Producto 1\",\r\n    \"description\": \"Descripción 1\",\r\n    \"price\": 99,\r\n    \"stock\": 10,\r\n    \"enabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://prueba-linktic.onrender.com/api/v1/products/:id",
+							"protocol": "https",
+							"host": [
+								"prueba-linktic",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "save-order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://prueba-linktic.onrender.com/api/v1/orders/:id",
+					"protocol": "https",
+					"host": [
+						"prueba-linktic",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "save-order",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\":[\r\n        { \"id\":\"229b2c54-505e-4327-9fbb-63c4b2e51c3c\", \"quantity\":3 },\r\n        { \"id\":\"5f9764e3-916f-4a61-9529-d0da2366967a\", \"quantity\":3 }\r\n    ],\r\n    \"shipped\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://prueba-linktic.onrender.com/api/v1/orders/:id",
+							"protocol": "https",
+							"host": [
+								"prueba-linktic",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
