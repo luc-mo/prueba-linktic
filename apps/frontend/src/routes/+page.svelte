@@ -3,10 +3,11 @@
   import { writable } from 'svelte/store'
   import { appStore } from '@/store/app-store'
   import { ProductsService } from '@/services/products'
+  import { parseProductFormData } from '@/utils'
 
   import NavbarButtons from '@/components/navbar-buttons.svelte'
   import Product from '@/components/product.svelte'
-  import ProductModal from '@/components/product-modal.svelte';
+  import ProductModal from '@/components/product-modal.svelte'
 
   let products: ProductEntity[] = []
   let isProductModalOpen = writable(false)
@@ -24,7 +25,29 @@
   }
 
   const handleAddNewProduct = () => isProductModalOpen.set(true)
-  const handleCancel = () => isProductModalOpen.set(false)
+  const handleCancelNewProduct = () => isProductModalOpen.set(false)
+
+  const handleSaveProduct = async(event: SubmitEvent) => {
+    try {
+      event.preventDefault()
+      appStore.set({ loading: true })
+      const form = event.target as HTMLFormElement
+      const formData = new FormData(form)
+
+      const id = crypto.randomUUID()
+      const data = parseProductFormData(formData)
+      const product = { id, ...data }
+      await ProductsService.saveProduct(product)
+
+      products = [...products, product]
+      form.reset()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      isProductModalOpen.set(false)
+      appStore.set({ loading: false })
+    }
+  }
 
   const handleAddToCart = () => {
     console.log('Added to cart')
@@ -55,7 +78,7 @@
   </main>
   <ProductModal
     open={isProductModalOpen}
-    onAccept={() => {}}
-    onCancel={handleCancel}
+    onAccept={handleSaveProduct}
+    onCancel={handleCancelNewProduct}
   />
 </div>
