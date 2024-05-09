@@ -108,11 +108,13 @@
       </section>
       <section class="flex items-center justify-end gap-4 px-8 pb-6">
         <Button variant="outlined" onClick={onCancel}>
-          Cancel
+          {isAdminUser ? 'Cancel' : 'Close'}
         </Button>
-        <Button type="submit">
-          Save
-        </Button>
+        {#if isAdminUser}
+          <Button type="submit">
+            Save
+          </Button>
+        {/if}
       </section>
     </form>
   </div>
