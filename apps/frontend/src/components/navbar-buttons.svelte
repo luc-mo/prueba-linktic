@@ -23,7 +23,7 @@
 
 <div class="flex gap-4">
   {#if isAdmin}
-    <Button variant="outlined" onClick={handleAddNewProduct}>
+    <Button variant="contained" onClick={handleAddNewProduct}>
       Add Product
     </Button>
   {:else}
