@@ -1,5 +1,11 @@
+.svelte-kit
+build
 node_modules
 dist
-api
+
 .env*
 !.env.example
+.DS_Store
+
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
