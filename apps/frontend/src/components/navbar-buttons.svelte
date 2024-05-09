@@ -11,6 +11,8 @@
   let user = get(userStore) 
   $: isAdmin = user?.role === 'admin'
 
+  export let handleAddNewProduct: () => void
+
   const handleLogout = () => {
     HttpClient.removeAuthToken()
     userStore.set(null)
@@ -21,7 +23,7 @@
 
 <div class="flex gap-4">
   {#if isAdmin}
-    <Button variant="outlined">
+    <Button variant="outlined" onClick={handleAddNewProduct}>
       Add Product
     </Button>
   {:else}
