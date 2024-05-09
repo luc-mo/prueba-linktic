@@ -33,4 +33,5 @@ interface Container {
 	// Use cases
 	registerUser: import('@/application/register-user').RegisterUser
 	loginUser: import('@/application/login-user').LoginUser
+	saveProduct: import('@/application/save-product').SaveProduct
 }
