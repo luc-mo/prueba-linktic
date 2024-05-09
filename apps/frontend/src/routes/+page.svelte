@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { writable } from 'svelte/store'
+
   import { appStore } from '@/store/app-store'
+  import { orderStore } from '@/store/order-store'
   import { ProductsService } from '@/services/products'
   import { parseProductFormData } from '@/utils'
 
@@ -49,8 +51,12 @@
     }
   }
 
-  const handleAddToCart = () => {
-    console.log('Added to cart')
+  const handleAddToCart = (productId: string) => {
+    orderStore.update(order => {
+      const quantity = order.products.get(productId) ?? 0
+      order.products.set(productId, quantity + 1)
+      return order
+    })
   }
 
   onMount(() => {
@@ -70,6 +76,7 @@
   <main class="grid grid-cols-[repeat(auto-fill,20rem)] gap-6">
     {#each products as product}
       <Product
+        id={product.id}
         name={product.name}
         price={product.price}
         onAddToCart={handleAddToCart}

@@ -1,8 +1,13 @@
 <script lang="ts">
   import Button from './button.svelte'
+  export let id: string;
   export let name: string;
   export let price: number;
-  export let onAddToCart: () => void | Promise<void>;
+  export let onAddToCart: (productId: string) => void | Promise<void>;
+
+  const handleAddToCart = () => {
+    onAddToCart(id)
+  }
 </script>
 
 <article class="bg-gray-800 rounded-lg overflow-hidden">
@@ -15,14 +20,14 @@
         {name}
       </h2>
       <span class="text-lg text-gray-400">
-        ${price.toFixed(2)}
+        ${price}
       </span>
     </div>
     <div class="flex justify-between w-full">
       <Button
         type="button"
         variant="contained"
-        onClick={onAddToCart}
+        onClick={handleAddToCart}
       >
         Add to cart
       </Button>
