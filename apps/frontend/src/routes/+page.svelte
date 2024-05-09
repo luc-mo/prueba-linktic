@@ -10,9 +10,11 @@
   import NavbarButtons from '@/components/navbar-buttons.svelte'
   import Product from '@/components/product.svelte'
   import ProductModal from '@/components/product-modal.svelte'
+  import CartModal from '@/components/cart-modal.svelte';
 
   let products: ProductEntity[] = []
   let isProductModalOpen = writable(false)
+  let isCartModalOpen = writable(false)
 
   const handleProducts = async() => {
     try {
@@ -28,6 +30,9 @@
 
   const handleAddNewProduct = () => isProductModalOpen.set(true)
   const handleCancelNewProduct = () => isProductModalOpen.set(false)
+
+  const handleOpenCart = () => isCartModalOpen.set(true)
+  const handleCloseCart = () => isCartModalOpen.set(false)
 
   const handleSaveProduct = async(event: SubmitEvent) => {
     try {
@@ -71,6 +76,7 @@
     </h1>
     <NavbarButtons
       handleAddNewProduct={handleAddNewProduct}
+      handleOpenCart={handleOpenCart}
     />
   </header>
   <main class="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] gap-6">
@@ -87,5 +93,11 @@
     open={isProductModalOpen}
     onAccept={handleSaveProduct}
     onCancel={handleCancelNewProduct}
+  />
+  <CartModal
+    open={isCartModalOpen}
+    products={products}
+    onAccept={() => {}}
+    onCancel={handleCloseCart}
   />
 </div>

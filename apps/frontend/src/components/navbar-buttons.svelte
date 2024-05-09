@@ -15,6 +15,7 @@
   $: isAdmin = user?.role === 'admin'
 
   export let handleAddNewProduct: () => void
+  export let handleOpenCart: () => void
 
   const handleQuantity = (value: Map<string, number>) => {
     quantity = Array.from(value.values()).reduce((acc, curr) => acc + curr, 0)
@@ -37,9 +38,9 @@
       Add Product
     </Button>
   {:else}
-    <Link href="/cart" variant="outlined">
+    <Button variant="outlined" onClick={handleOpenCart}>
       Cart ({quantity})
-    </Link>
+    </Button>
   {/if}
   {#if user}
     <Button variant="outlined" onClick={handleLogout}>
