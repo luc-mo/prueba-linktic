@@ -7,7 +7,7 @@
 
   let dialogRef: HTMLDialogElement | null = null
   export let open: Writable<boolean>
-  export let onAccept: () => void
+  export let onAccept: (event: SubmitEvent) => void
   export let onCancel: () => void
 
   const handleModal = (value: boolean) => {
