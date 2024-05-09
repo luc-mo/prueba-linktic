@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { writable } from 'svelte/store'
+  import { get, writable } from 'svelte/store'
 
   import { appStore } from '@/store/app-store'
   import { orderStore } from '@/store/order-store'
+
   import { ProductsService } from '@/services/products'
-  import { parseProductFormData } from '@/utils'
+  import { OrdersService } from '@/services/order'
+  import { parseOrder, parseProductFormData } from '@/utils'
 
   import NavbarButtons from '@/components/navbar-buttons.svelte'
   import Product from '@/components/product.svelte'
@@ -64,6 +66,24 @@
     })
   }
 
+  const handleCreateOrder = async(event: SubmitEvent) => {
+    try {
+      event.preventDefault()
+      appStore.set({ loading: true })
+
+      const id = crypto.randomUUID()
+      const products = parseOrder(get(orderStore).products)
+      const shipped = false
+      await OrdersService.saveOrder({ id, products, shipped })
+      
+      orderStore.set({ products: new Map() })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      appStore.set({ loading: false })
+    }
+  }
+
   onMount(() => {
     handleProducts()
   })
@@ -97,7 +117,7 @@
   <CartModal
     open={isCartModalOpen}
     products={products}
-    onAccept={() => {}}
+    onAccept={handleCreateOrder}
     onCancel={handleCloseCart}
   />
 </div>
