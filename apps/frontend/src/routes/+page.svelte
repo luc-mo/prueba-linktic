@@ -77,6 +77,7 @@
       await OrdersService.saveOrder({ id, products, shipped })
       
       orderStore.set({ products: new Map() })
+      isCartModalOpen.set(false)
     } catch (error) {
       console.error(error)
     } finally {
