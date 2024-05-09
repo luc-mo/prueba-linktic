@@ -19,6 +19,7 @@ import { productDocumentParser } from './infrastructure/persistence/postgres/pro
 
 import { RegisterUser } from './application/register-user'
 import { LoginUser } from './application/login-user'
+import { FindAllProducts } from './application/find-all-products'
 import { SaveProduct } from './application/save-product'
 
 const container = createContainer<Container>({
@@ -54,6 +55,7 @@ container.register({
 	// Use cases
 	registerUser: asClass(RegisterUser),
 	loginUser: asClass(LoginUser),
+	findAllProducts: asClass(FindAllProducts),
 	saveProduct: asClass(SaveProduct),
 })
 
