@@ -5,6 +5,17 @@ import { SaveProductCommand } from '@/application/save-product'
 
 const productsController = Router()
 
+productsController.get('/', async (req, res) => {
+	try {
+		const findAllProducts = container.resolve('findAllProducts')
+		const response = await findAllProducts.execute()
+		res.status(200).send(response)
+	} catch (error) {
+		console.error(error)
+		res.status(500).send({ message: 'Internal server error' })
+	}
+})
+
 productsController.put('/:id', async (req, res) => {
 	try {
 		const { id } = req.params
