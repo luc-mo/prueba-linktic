@@ -24,6 +24,8 @@ export class ProductRepository {
         products.enabled
       FROM
         products
+			WHERE
+				products.enabled = true
     `)
 		return result.map((document) => this._productDocumentParser.toDomain(document))
 	}
