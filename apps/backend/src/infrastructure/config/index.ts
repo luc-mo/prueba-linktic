@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
+
 export const config = {
 	server: {
 		environment: process.env.NODE_ENV!,
