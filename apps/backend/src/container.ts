@@ -12,10 +12,12 @@ import { PostgresHandler } from './infrastructure/persistence/postgres/db-handle
 import { UserRepository } from './infrastructure/persistence/postgres/user/repository'
 import { AuthRepository } from './infrastructure/persistence/postgres/auth/repository'
 import { ProductRepository } from './infrastructure/persistence/postgres/product/repository'
+import { OrderRepository } from './infrastructure/persistence/postgres/order/repository'
 
 import { userDocumentParser } from './infrastructure/persistence/postgres/user/document-parser'
 import { authDocumentParser } from './infrastructure/persistence/postgres/auth/document-parser'
 import { productDocumentParser } from './infrastructure/persistence/postgres/product/document-parser'
+import { orderDocumentParser } from './infrastructure/persistence/postgres/order/document-parser'
 
 import { RegisterUser } from './application/register-user'
 import { LoginUser } from './application/login-user'
@@ -46,11 +48,13 @@ container.register({
 	userRepository: asClass(UserRepository),
 	authRepository: asClass(AuthRepository),
 	productRepository: asClass(ProductRepository),
+	orderRepository: asClass(OrderRepository),
 
 	// Document parsers
 	userDocumentParser: asFunction(userDocumentParser),
 	authDocumentParser: asFunction(authDocumentParser),
 	productDocumentParser: asFunction(productDocumentParser),
+	orderDocumentParser: asFunction(orderDocumentParser),
 
 	// Use cases
 	registerUser: asClass(RegisterUser),

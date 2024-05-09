@@ -18,6 +18,7 @@ interface Container {
 	authRepository: import('@/infrastructure/persistence/postgres/auth/repository').AuthRepository
 	userRepository: import('@/infrastructure/persistence/postgres/user/repository').UserRepository
 	productRepository: import('@/infrastructure/persistence/postgres/product/repository').ProductRepository
+	orderRepository: import('@/infrastructure/persistence/postgres/order/repository').OrderRepository
 
 	// Document parsers
 	authDocumentParser: ReturnType<
@@ -28,6 +29,9 @@ interface Container {
 	>
 	productDocumentParser: ReturnType<
 		typeof import('@/infrastructure/persistence/postgres/product/document-parser').productDocumentParser
+	>
+	orderDocumentParser: ReturnType<
+		typeof import('@/infrastructure/persistence/postgres/order/document-parser').orderDocumentParser
 	>
 
 	// Use cases
