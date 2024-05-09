@@ -4,13 +4,15 @@ export class Product {
 	private _description: string
 	private _price: number
 	private _stock: number
+	private _enabled: boolean
 
-	constructor({ id, name, description, price, stock }: Constructor) {
+	constructor({ id, name, description, price, stock, enabled }: Constructor) {
 		this._id = id
 		this._name = name
 		this._description = description
 		this._price = price
 		this._stock = stock
+		this._enabled = enabled
 	}
 
 	public get id(): string {
@@ -48,6 +50,14 @@ export class Product {
 	public set stock(stock: number) {
 		this._stock = stock
 	}
+
+	public get enabled(): boolean {
+		return this._enabled
+	}
+
+	public set enabled(enabled: boolean) {
+		this._enabled = enabled
+	}
 }
 
 interface Constructor {
@@ -56,4 +66,5 @@ interface Constructor {
 	description: string
 	price: number
 	stock: number
+	enabled: boolean
 }

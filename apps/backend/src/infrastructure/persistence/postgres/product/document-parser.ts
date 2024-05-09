@@ -9,6 +9,7 @@ export const productDocumentParser = () => {
 				description: document.description,
 				price: document.price,
 				stock: document.stock,
+				enabled: document.enabled,
 			})
 		},
 		toDocument: (product: Product) => {
@@ -18,6 +19,7 @@ export const productDocumentParser = () => {
 				description: product.description,
 				price: product.price,
 				stock: product.stock,
+				enabled: product.enabled,
 			}
 		},
 	}

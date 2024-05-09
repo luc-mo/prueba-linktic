@@ -20,7 +20,8 @@ export class ProductRepository {
         products.name,
         products.description,
         products.price,
-        products.stock
+        products.stock,
+        products.enabled
       FROM
         products
     `)
@@ -36,7 +37,8 @@ export class ProductRepository {
           products.name,
           products.description,
           products.price,
-          products.stock
+          products.stock,
+          products.enabled
         FROM
           products
         WHERE
@@ -53,17 +55,40 @@ export class ProductRepository {
 		await instance.query(
 			`
         INSERT INTO
-          products (id, name, description, price, stock)
+          products (id, name, description, price, stock, enabled)
         VALUES
-          ($1, $2, $3, $4, $5)
+          ($1, $2, $3, $4, $5, $6)
         ON CONFLICT (id)
         DO UPDATE SET
           name = $2,
           description = $3,
           price = $4,
-          stock = $5
+          stock = $5,
+          enabled = $6
       `,
-			[document.id, document.name, document.description, document.price, document.stock]
+			[
+				document.id,
+				document.name,
+				document.description,
+				document.price,
+				document.stock,
+				document.enabled,
+			]
+		)
+	}
+
+	public async delete(id: string): Promise<void> {
+		const instance = await this._dbHandler.getInstance()
+		await instance.query(
+			`
+        UPDATE
+          products
+        SET
+          enabled = false
+        WHERE
+          id = $1
+      `,
+			[id]
 		)
 	}
 }
