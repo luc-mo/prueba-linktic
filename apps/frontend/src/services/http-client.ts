@@ -29,7 +29,12 @@ const _instance = axios.create({
 export const HttpClient = {
 	instance: _instance,
 	setAuthToken: (token: string) => {
+		localStorage.setItem('auth-token', token)
 		_instance.defaults.headers['auth-token'] = `Bearer ${token}`
+	},
+	removeAuthToken: () => {
+		localStorage.removeItem('auth-token')
+		_instance.defaults.headers['auth-token'] = null
 	},
 	post: async <T>({ url, body, options }: Post) => {
 		const { data } = await _instance.post<T>(url, body, options).catch(_handleError)
