@@ -8,7 +8,7 @@
 
   import { ProductsService } from '@/services/products'
   import { OrdersService } from '@/services/order'
-  import { parseOrder, parseProductFormData } from '@/utils'
+  import { parseOrder } from '@/utils'
 
   import NavbarButtons from '@/components/navbar-buttons.svelte'
   import Product from '@/components/product/product.svelte'
@@ -16,6 +16,12 @@
   import CartModal from '@/components/cart/cart-modal.svelte';
 
   let products: ProductEntity[] = []
+  let isAdmin = writable(false)
+
+  let productModalTitle = ''
+  let productModalSubtitle = ''
+  let selectedProduct = writable<ProductEntity | null>(null)
+    
   let isProductModalOpen = writable(false)
   let isCartModalOpen = writable(false)
 
@@ -31,26 +37,57 @@
     }
   }
 
-  const handleAddNewProduct = () => isProductModalOpen.set(true)
-  const handleCancelNewProduct = () => isProductModalOpen.set(false)
+  const handleProductChange = (event: Event) => {
+    const { name, value } = event.target as HTMLInputElement
+    selectedProduct.update(product => {
+      if (!product) return null
+      return { ...product, [name]: value }
+    })
+  }
 
-  const handleOpenCart = () => isCartModalOpen.set(true)
-  const handleCloseCart = () => isCartModalOpen.set(false)
+  const handleAddNewProduct = () => {
+    productModalTitle = 'Add new product'
+    productModalSubtitle = 'Fill the form to add a new product.'
+    selectedProduct.set({
+      id: crypto.randomUUID(),
+      name: '',
+      description: '',
+      price: 1,
+      stock: 1,
+      enabled: true
+    })
+    isProductModalOpen.set(true)
+  }
+
+  const handleViewProduct = (productId: string) => {
+    const product = products.find(product => product.id === productId)!
+    console.log(product)
+    productModalTitle = get(isAdmin) ? 'Edit product' : 'Product details'
+    productModalSubtitle = get(isAdmin)
+      ? 'Edit the product details.'
+      : 'View the product details.'
+    selectedProduct.set(product)
+    isProductModalOpen.set(true)
+  }
+
+  const handleCancelViewProduct = () => {
+    selectedProduct.set(null)
+    isProductModalOpen.set(false)
+  }
 
   const handleSaveProduct = async(event: SubmitEvent) => {
     try {
       event.preventDefault()
       appStore.set({ loading: true })
-      const form = event.target as HTMLFormElement
-      const formData = new FormData(form)
-
-      const id = crypto.randomUUID()
-      const data = parseProductFormData(formData)
-      const product = { id, ...data }
+      
+      const product = get(selectedProduct)!
       await ProductsService.saveProduct(product)
 
-      products = [...products, product]
-      form.reset()
+      const exists = products.find(p => p.id === product.id)
+      products = exists
+        ? products.map(p => p.id === product.id ? product : p)
+        : [...products, product]
+      selectedProduct.set(null)
     } catch (error) {
       console.error(error)
     } finally {
@@ -71,6 +108,9 @@
       appStore.set({ loading: false })
     }
   }
+
+  const handleOpenCart = () => isCartModalOpen.set(true)
+  const handleCloseCart = () => isCartModalOpen.set(false)
 
   const handleAddToCart = (productId: string) => {
     orderStore.update(order => {
@@ -101,6 +141,9 @@
 
   onMount(() => {
     handleProducts()
+    userStore.subscribe(user => {
+      isAdmin.set(user?.role === 'admin')
+    })
   })
 </script>
 
@@ -120,16 +163,22 @@
         id={product.id}
         name={product.name}
         price={product.price}
-        isAdmin={get(userStore)?.role === 'admin'}
+        isAdmin={get(isAdmin)}
         onAddToCart={handleAddToCart}
+        onViewDetails={handleViewProduct}
         onDelete={handleDeleteProduct}
       />
     {/each}
   </main>
   <ProductModal
     open={isProductModalOpen}
+    product={selectedProduct}
+    title={productModalTitle}
+    subtitle={productModalSubtitle}
+    isAdmin={isAdmin}
+    onInput={handleProductChange}
     onAccept={handleSaveProduct}
-    onCancel={handleCancelNewProduct}
+    onCancel={handleCancelViewProduct}
   />
   <CartModal
     open={isCartModalOpen}

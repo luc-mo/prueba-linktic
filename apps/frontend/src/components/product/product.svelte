@@ -7,10 +7,15 @@
   export let price: number
   export let isAdmin: boolean
   export let onAddToCart: (productId: string) => void | Promise<void>
+  export let onViewDetails: (productId: string) => void | Promise<void>
   export let onDelete: (productId: string) => void | Promise<void>
 
   const handleAddToCart = () => {
     onAddToCart(id)
+  }
+
+  const handleViewDetails = () => {
+    onViewDetails(id)
   }
 
   const handleDelete = () => {
@@ -19,22 +24,12 @@
 </script>
 
 <article class="bg-gray-800 rounded-lg overflow-hidden">
-  <section class="relative w-full h-48 bg-white p-8">
+  <section class="w-full h-48 bg-white p-8">
     <img
       class="w-full h-full"
       src={productImage}
       alt={name}
     />
-    {#if isAdmin}
-      <Button
-        type="button"
-        variant="contained"
-        onClick={handleDelete}
-        class="absolute top-2 right-2"
-      >
-        Delete
-      </Button>
-    {/if}
   </section>
   <section class="w-full p-4">
     <div class="mb-2">
@@ -46,6 +41,13 @@
       </span>
     </div>
     <div class="flex justify-between w-full">
+      <Button
+        type="button"
+        variant="outlined"
+        onClick={handleViewDetails}
+      >
+        {isAdmin ? 'Edit' : 'View details'}
+      </Button>
       {#if !isAdmin}
         <Button
           type="button"
@@ -54,15 +56,15 @@
         >
           Add to cart
         </Button>
+      {:else}
+        <Button
+          type="button"
+          variant="contained"
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
       {/if}
-      <!-- TODO - add view details button handler -->
-      <Button
-        type="button"
-        variant="outlined"
-        onClick={() => {}}
-      >
-        View details
-      </Button>
     </div>
   </section>
 </article>
