@@ -20,3 +20,10 @@ export function parseProductFormData(form: FormData): StrictOmit<ProductEntity, 
 		enabled: true,
 	}
 }
+
+export function parseProductOrder(order: Map<string, number>, products: ProductEntity[]) {
+	return products.map((product) => ({
+		...product,
+		quantity: order.get(product.id) ?? 0,
+	}))
+}
