@@ -5,7 +5,7 @@
 
   export let type: Types = 'button'
   export let variant: Variants = 'contained'
-  export let onClick: () => void | Promise<void>
+  export let onClick: (() => void | Promise<void>) | undefined = undefined
 
   const classes = clsx(
     'flex items-center justify-center h-9 px-3 text-sm font-medium rounded-md transition-colors',
