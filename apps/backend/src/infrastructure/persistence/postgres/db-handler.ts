@@ -15,11 +15,7 @@ export class PostgresHandler {
 
 	private _initializePool() {
 		return new this._pg.Pool({
-			host: this._config.postgres.host,
-			port: this._config.postgres.port,
-			user: this._config.postgres.user,
-			password: this._config.postgres.password,
-			database: this._config.postgres.database,
+			connectionString: this._config.postgres.url,
 			max: this._config.postgres.max,
 		})
 	}

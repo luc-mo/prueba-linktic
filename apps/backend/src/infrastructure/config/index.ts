@@ -8,11 +8,7 @@ export const config = {
 		jwtSecret: process.env.JWT_SECRET!,
 	},
 	postgres: {
-		host: process.env.POSTGRES_HOST!,
-		user: process.env.POSTGRES_USER!,
-		password: process.env.POSTGRES_PASSWORD!,
-		database: process.env.POSTGRES_DATABASE!,
-		port: Number(process.env.POSTGRES_PORT!),
+		url: process.env.POSTGRES_URL!,
 		max: Number(process.env.POSTGRES_MAX!),
 	},
 }
