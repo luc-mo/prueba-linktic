@@ -18,6 +18,7 @@ import { authDocumentParser } from './infrastructure/persistence/postgres/auth/d
 import { productDocumentParser } from './infrastructure/persistence/postgres/product/document-parser'
 
 import { RegisterUser } from './application/register-user'
+import { LoginUser } from './application/login-user'
 
 const container = createContainer<Container>({
 	injectionMode: InjectionMode.PROXY,
@@ -51,6 +52,7 @@ container.register({
 
 	// Use cases
 	registerUser: asClass(RegisterUser),
+	loginUser: asClass(LoginUser),
 })
 
 export { container }
