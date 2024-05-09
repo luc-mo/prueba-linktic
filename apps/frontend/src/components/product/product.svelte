@@ -2,24 +2,39 @@
   import Button from '@/components/button.svelte'
   import productImage from '@/assets/product.svg'
 
-  export let id: string;
-  export let name: string;
-  export let price: number;
-  export let isAdmin: boolean;
-  export let onAddToCart: (productId: string) => void | Promise<void>;
+  export let id: string
+  export let name: string
+  export let price: number
+  export let isAdmin: boolean
+  export let onAddToCart: (productId: string) => void | Promise<void>
+  export let onDelete: (productId: string) => void | Promise<void>
 
   const handleAddToCart = () => {
     onAddToCart(id)
   }
+
+  const handleDelete = () => {
+    onDelete(id)
+  }
 </script>
 
 <article class="bg-gray-800 rounded-lg overflow-hidden">
-  <section class="w-full h-48 bg-white p-8">
+  <section class="relative w-full h-48 bg-white p-8">
     <img
       class="w-full h-full"
       src={productImage}
       alt={name}
     />
+    {#if isAdmin}
+      <Button
+        type="button"
+        variant="contained"
+        onClick={handleDelete}
+        class="absolute top-2 right-2"
+      >
+        Delete
+      </Button>
+    {/if}
   </section>
   <section class="w-full p-4">
     <div class="mb-2">

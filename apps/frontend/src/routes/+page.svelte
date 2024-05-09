@@ -59,6 +59,19 @@
     }
   }
 
+  const handleDeleteProduct = async(productId: string) => {
+    try {
+      appStore.set({ loading: true })
+      const product = products.find(product => product.id === productId)!
+      await ProductsService.saveProduct({ ...product, enabled: false })
+      products = products.filter(product => product.id !== productId)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      appStore.set({ loading: false })
+    }
+  }
+
   const handleAddToCart = (productId: string) => {
     orderStore.update(order => {
       const quantity = order.products.get(productId) ?? 0
@@ -109,6 +122,7 @@
         price={product.price}
         isAdmin={get(userStore)?.role === 'admin'}
         onAddToCart={handleAddToCart}
+        onDelete={handleDeleteProduct}
       />
     {/each}
   </main>
