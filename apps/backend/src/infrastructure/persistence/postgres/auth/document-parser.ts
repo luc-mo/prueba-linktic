@@ -1,6 +1,6 @@
 import { Auth } from '@/domain/auth'
 
-export const authDocumentParser = ({ cipher }: Pick<Container, 'cipher'>) => {
+export const authDocumentParser = () => {
 	return {
 		toDomain: (document: any) => {
 			return new Auth({
@@ -15,10 +15,7 @@ export const authDocumentParser = ({ cipher }: Pick<Container, 'cipher'>) => {
 				id: auth.id,
 				user_id: auth.userId,
 				salt: auth.salt,
-				password: cipher.encrypt({
-					data: auth.password,
-					salt: auth.salt,
-				}),
+				password: auth.password,
 			}
 		},
 	}
