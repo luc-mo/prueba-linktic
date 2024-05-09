@@ -5,6 +5,7 @@
 
   import { appStore } from '@/store/app-store'
   import { userStore } from '@/store/user-store'
+  import Textfield from '@/components/textfield.svelte'
 
   let credentials = {
     username: '',
@@ -45,25 +46,24 @@
     </header>
     <section>
       <form on:submit={handleSubmit}>
+        <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="block mb-4">
           <div class="mb-1 text-gray-300">Username</div>
-          <input
-            class="flex w-full h-10 px-3 py-2 bg-gray-700 border-gray-600 text-sm border rounded-md"
-            type="text"
+          <Textfield
             name="username"
             value={credentials.username}
-            on:input={handleChange}
+            onInput={handleChange}
             required
           />
         </label>
+        <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="block mb-6">
           <div class="mb-1 text-gray-300">Password</div>
-          <input
-            class="flex w-full h-10 px-3 py-2 bg-gray-700 border-gray-600 text-sm border rounded-md"
+          <Textfield
             type="password"
             name="password"
             value={credentials.password}
-            on:input={handleChange}
+            onInput={handleChange}
             required
           />
         </label>
