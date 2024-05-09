@@ -1,4 +1,9 @@
 <script lang="ts">
+  import { goto } from '$app/navigation'
+  import { HttpClient } from '@/services/http-client'
+  import { AuthService } from '@/services/auth'
+  import { user } from '@/store/user-store'
+
   let credentials = {
     username: '',
     password: ''
@@ -12,6 +17,18 @@
       [name]: value
     }
   }
+  
+  const handleSubmit = async(event: SubmitEvent) => {
+    try {
+      event.preventDefault()
+      const { username, role, token } = await AuthService.login(credentials)
+      HttpClient.setAuthToken(token)
+      user.set({ username, role })
+      goto('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 </script>
 
 <div class="flex items-center justify-center min-h-screen p-4">
@@ -22,7 +39,7 @@
       </h1>
     </header>
     <section>
-      <form>
+      <form on:submit={handleSubmit}>
         <label class="block mb-4">
           <div class="mb-1 text-gray-300">Username</div>
           <input
