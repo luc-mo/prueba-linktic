@@ -29,4 +29,7 @@ interface Container {
 	productDocumentParser: ReturnType<
 		typeof import('@/infrastructure/persistence/postgres/product/document-parser').productDocumentParser
 	>
+
+	// Use cases
+	registerUser: import('@/application/register-user').RegisterUser
 }
