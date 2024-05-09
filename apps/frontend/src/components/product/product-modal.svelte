@@ -2,8 +2,8 @@
   import { onMount } from 'svelte'
   import type { Writable } from 'svelte/store'
 
-  import Textfield from './textfield.svelte'
-  import Button from './button.svelte'
+  import Textfield from '@/components/textfield.svelte'
+  import Button from '@/components/button.svelte'
 
   let dialogRef: HTMLDialogElement | null = null
   export let open: Writable<boolean>

@@ -6,7 +6,7 @@
   import { parseProductOrder } from '@/utils'
 
   import CartProduct from './cart-product.svelte'
-  import Button from './button.svelte'
+  import Button from '@/components/button.svelte'
 
   let dialogRef: HTMLDialogElement | null = null
   let order = get(orderStore)

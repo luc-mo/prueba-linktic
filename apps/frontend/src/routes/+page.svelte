@@ -11,9 +11,9 @@
   import { parseOrder, parseProductFormData } from '@/utils'
 
   import NavbarButtons from '@/components/navbar-buttons.svelte'
-  import Product from '@/components/product.svelte'
-  import ProductModal from '@/components/product-modal.svelte'
-  import CartModal from '@/components/cart-modal.svelte';
+  import Product from '@/components/product/product.svelte'
+  import ProductModal from '@/components/product/product-modal.svelte'
+  import CartModal from '@/components/cart/cart-modal.svelte';
 
   let products: ProductEntity[] = []
   let isProductModalOpen = writable(false)
