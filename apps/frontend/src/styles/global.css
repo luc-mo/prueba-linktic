@@ -24,3 +24,8 @@ html, body {
     'Helvetica Neue',
     sans-serif;
 }
+
+body {
+  background-color: #111827;
+  color: #fafafa;
+}
