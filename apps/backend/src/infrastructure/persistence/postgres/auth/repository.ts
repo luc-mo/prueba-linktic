@@ -12,7 +12,7 @@ export class AuthRepository {
 		this._authDocumentParser = authDocumentParser
 	}
 
-	public async findByUsernameAndPassword(username: string, password: string): Promise<Auth | null> {
+	public async findByUsername(username: string) {
 		const instance = await this._dbHandler.getInstance()
 		const result = await instance.query(
 			`
@@ -29,10 +29,8 @@ export class AuthRepository {
           auth.user_id = users.id
         WHERE
           users.username = $1
-        AND
-          auth.password = $2
       `,
-			[username, password]
+			[username]
 		)
 		return result[0] ? this._authDocumentParser.toDomain(result[0]) : null
 	}
