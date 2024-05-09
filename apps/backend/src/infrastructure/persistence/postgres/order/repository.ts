@@ -1,3 +1,4 @@
+import { StringBuilder } from '@/common/string-builder'
 import type { Order } from '@/domain/order'
 
 export class OrderRepository {
@@ -19,21 +20,35 @@ export class OrderRepository {
 			.map((product) => `('${document.id}', '${product.product_id}', ${product.quantity})`)
 			.join(', ')
 
-		await instance.query(`
-      BEGIN;
-      INSERT INTO
-        orders (id, shipped)
-      VALUES
-        ('${document.id}', ${document.shipped});
-      INSERT INTO
-        order_product (order_id, product_id, quantity)
-      VALUES
-        ${products};
-      INSERT INTO
-        order_user (order_id, user_id)
-      VALUES
-        ('${document.id}', '${document.user_id}');
-      COMMIT;
-    `)
+		const query = new StringBuilder('BEGIN;')
+			.concat(
+				`
+				INSERT INTO
+					orders (id, shipped)
+				VALUES
+					('${document.id}', ${document.shipped});
+			`
+			)
+			.concat(
+				`
+				INSERT INTO
+					order_product (order_id, product_id, quantity)
+				VALUES
+					${products};
+			`
+			)
+			.concatIfExists(
+				`
+				INSERT INTO
+					order_user (order_id, user_id)
+				VALUES
+					('${document.id}', '${document.user_id}');
+			`,
+				Boolean(document.user_id)
+			)
+			.concat('COMMIT;')
+			.toString()
+
+		await instance.query(query)
 	}
 }
