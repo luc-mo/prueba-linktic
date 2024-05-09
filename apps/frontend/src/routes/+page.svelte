@@ -3,6 +3,7 @@
   import { get, writable } from 'svelte/store'
 
   import { appStore } from '@/store/app-store'
+  import { userStore } from '@/store/user-store'
   import { orderStore } from '@/store/order-store'
 
   import { ProductsService } from '@/services/products'
@@ -106,6 +107,7 @@
         id={product.id}
         name={product.name}
         price={product.price}
+        isAdmin={get(userStore)?.role === 'admin'}
         onAddToCart={handleAddToCart}
       />
     {/each}

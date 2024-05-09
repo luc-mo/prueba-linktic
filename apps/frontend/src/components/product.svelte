@@ -3,6 +3,7 @@
   export let id: string;
   export let name: string;
   export let price: number;
+  export let isAdmin: boolean;
   export let onAddToCart: (productId: string) => void | Promise<void>;
 
   const handleAddToCart = () => {
@@ -24,13 +25,15 @@
       </span>
     </div>
     <div class="flex justify-between w-full">
-      <Button
-        type="button"
-        variant="contained"
-        onClick={handleAddToCart}
-      >
-        Add to cart
-      </Button>
+      {#if !isAdmin}
+        <Button
+          type="button"
+          variant="contained"
+          onClick={handleAddToCart}
+        >
+          Add to cart
+        </Button>
+      {/if}
       <!-- TODO - add view details button handler -->
       <Button
         type="button"
