@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation'
   import { HttpClient } from '@/services/http-client'
   import { AuthService } from '@/services/auth'
-  import { user } from '@/store/user-store'
+  import { userStore } from '@/store/user-store'
 
   let credentials = {
     username: '',
@@ -23,7 +23,7 @@
       event.preventDefault()
       const { username, role, token } = await AuthService.login(credentials)
       HttpClient.setAuthToken(token)
-      user.set({ username, role })
+      userStore.set({ username, role })
       goto('/')
     } catch (error) {
       console.error(error)
