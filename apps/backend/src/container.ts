@@ -10,7 +10,10 @@ import { Cipher } from './domain/services/cipher'
 
 import { PostgresHandler } from './infrastructure/persistence/postgres/db-handler'
 import { UserRepository } from './infrastructure/persistence/postgres/user/repository'
+import { AuthRepository } from './infrastructure/persistence/postgres/auth/repository'
+
 import { userDocumentParser } from './infrastructure/persistence/postgres/user/document-parser'
+import { authDocumentParser } from './infrastructure/persistence/postgres/auth/document-parser'
 
 const container = createContainer<Container>({
 	injectionMode: InjectionMode.PROXY,
@@ -34,9 +37,11 @@ container.register({
 
 	// Repositories
 	userRepository: asClass(UserRepository),
+	authRepository: asClass(AuthRepository),
 
 	// Document parsers
 	userDocumentParser: asFunction(userDocumentParser),
+	authDocumentParser: asFunction(authDocumentParser),
 })
 
 export { container }

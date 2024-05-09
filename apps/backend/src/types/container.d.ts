@@ -16,9 +16,13 @@ interface Container {
 
 	// Repositories
 	userRepository: import('@/infrastructure/persistence/postgres/user/repository').UserRepository
+	authRepository: import('@/infrastructure/persistence/postgres/auth/repository').AuthRepository
 
 	// Document parsers
 	userDocumentParser: ReturnType<
 		typeof import('@/infrastructure/persistence/postgres/user/document-parser').userDocumentParser
+	>
+	authDocumentParser: ReturnType<
+		typeof import('@/infrastructure/persistence/postgres/auth/document-parser').authDocumentParser
 	>
 }
