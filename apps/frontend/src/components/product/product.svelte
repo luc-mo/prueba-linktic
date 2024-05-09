@@ -1,5 +1,7 @@
 <script lang="ts">
   import Button from '@/components/button.svelte'
+  import productImage from '@/assets/product.svg'
+
   export let id: string;
   export let name: string;
   export let price: number;
@@ -12,8 +14,12 @@
 </script>
 
 <article class="bg-gray-800 rounded-lg overflow-hidden">
-  <section class="w-full h-48 bg-white">
-    <!-- TODO - add image -->
+  <section class="w-full h-48 bg-white p-8">
+    <img
+      class="w-full h-full"
+      src={productImage}
+      alt={name}
+    />
   </section>
   <section class="w-full p-4">
     <div class="mb-2">
