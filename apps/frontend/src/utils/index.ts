@@ -27,3 +27,10 @@ export function parseProductOrder(order: Map<string, number>, products: ProductE
 		quantity: order.get(product.id) ?? 0,
 	}))
 }
+
+export function parseOrder(products: Map<string, number>) {
+	return Array.from(products.entries()).map(([id, quantity]) => ({
+		id,
+		quantity,
+	}))
+}
