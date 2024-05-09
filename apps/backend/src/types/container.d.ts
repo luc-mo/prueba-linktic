@@ -15,14 +15,18 @@ interface Container {
 	dbHandler: import('@/infrastructure/persistence/postgres/db-handler').PostgresHandler
 
 	// Repositories
-	userRepository: import('@/infrastructure/persistence/postgres/user/repository').UserRepository
 	authRepository: import('@/infrastructure/persistence/postgres/auth/repository').AuthRepository
+	userRepository: import('@/infrastructure/persistence/postgres/user/repository').UserRepository
+	productRepository: import('@/infrastructure/persistence/postgres/product/repository').ProductRepository
 
 	// Document parsers
+	authDocumentParser: ReturnType<
+		typeof import('@/infrastructure/persistence/postgres/auth/document-parser').authDocumentParser
+	>
 	userDocumentParser: ReturnType<
 		typeof import('@/infrastructure/persistence/postgres/user/document-parser').userDocumentParser
 	>
-	authDocumentParser: ReturnType<
-		typeof import('@/infrastructure/persistence/postgres/auth/document-parser').authDocumentParser
+	productDocumentParser: ReturnType<
+		typeof import('@/infrastructure/persistence/postgres/product/document-parser').productDocumentParser
 	>
 }
