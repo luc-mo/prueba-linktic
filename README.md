@@ -4,7 +4,7 @@
 Este proyecto es una prueba técnica para la empresa Linktic. Consiste en una aplicación web de e-commerce que permite a los usuarios administradores visualizar, crear, editar y eliminar productos. Además, los usuarios comunes pueden agregar productos al carrito de compras y realizar una compra.
 
 ## Tecnologías
-- Frontend: Sveltekit
+- Frontend: Sveltekit, TailwindCSS
 - Backend: Node.js, Express.js
 - Base de datos: PostgreSQL
 
