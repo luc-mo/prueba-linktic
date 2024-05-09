@@ -58,7 +58,7 @@ En este apartado detallare algunas notas adicionales sobre el proyecto, aclaraci
 
 - Se ha intentado seguir una buena practica a nivel de manejo de estados en la aplicación. Pero debido al tiempo, no se ha podido ahondar en las mejores practicas de Sveltekit. Por lo que, se podrian realizar mejoras en la implementación de estados globales y locales.
 
-## Despliegue
+### Despliegue
 - Para el despliegue de la aplicación se ha utilizado Vercel para el frontend y Render para el backend. Se ha utilizado Vercel para el frontend debido a que es una plataforma que facilita el despliegue de aplicaciones Sveltekit. Por otro lado, se ha utilizado Render debido a que actualmente es una de las pocas plataformas que permite el despliegue de aplicaciones Node.js de forma gratuita y sencilla.
 
 
