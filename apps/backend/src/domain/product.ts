@@ -15,6 +15,17 @@ export class Product {
 		this._enabled = enabled
 	}
 
+	public toJSON() {
+		return {
+			id: this.id,
+			name: this.name,
+			description: this.description,
+			price: this.price,
+			stock: this.stock,
+			enabled: this.enabled,
+		}
+	}
+
 	public get id(): string {
 		return this._id
 	}
